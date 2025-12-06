@@ -59,7 +59,8 @@ const Layout = () => {
                 {notificationCount > 0 && (
                     <div className="hidden md:flex items-center gap-2 text-xs font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded-full border border-red-100 animate-pulse">
                         <span>⚠️ Action Required:</span>
-                        <span>{stats.retiring_this_year} retiring soon</span>
+                        <span>{stats.retiring_this_year} retiring soon</span>,
+                        <span>{stats.abandonned} abandon(s)</span>
                     </div>
                 )}
                 <button className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
@@ -69,7 +70,7 @@ const Layout = () => {
                     )}
                 </button>
                 <div className="w-8 h-8 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-700 font-bold text-xs">
-                    AD
+                    OPB
                 </div>
             </div>
         </header>

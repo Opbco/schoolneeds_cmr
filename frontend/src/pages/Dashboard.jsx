@@ -35,7 +35,7 @@ const Dashboard = () => {
   // 1. Fetch Domains for Filter Dropdown
   const { data: domains = [] } = useQuery({
     queryKey: ['domains'],
-    queryFn: async () => (await api.get('/domaines')).data,
+    queryFn: async () => (await api.get('schools/domaines')).data,
     staleTime: 1000 * 60 * 60 // 1 hour
   });
 
