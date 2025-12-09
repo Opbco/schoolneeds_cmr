@@ -88,7 +88,7 @@ const Networks = () => {
                 value={radius}
                 onChange={(e) => setRadius(parseFloat(e.target.value))}
                 className="w-16 p-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-indigo-500 outline-none"
-                min="1" max="50" step="0.5"
+                min="1" max="100" step="0.5"
                 disabled={isBusy}
               />
             </div>
