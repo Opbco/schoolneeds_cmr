@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import api from '../services/api';
 import SchoolMap from '../components/SchoolMap';
 import useSchoolDistance from '../hooks/useSchoolDistance';
-import { Map, List, Search, Ruler, RefreshCw, CircleDashed, BookOpen, TrendingDown, TrendingUp, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { Map, List, Search, Ruler, RefreshCw, CircleDashed, BookOpen, TrendingDown, TrendingUp, ArrowUpDown, ArrowUp, ArrowDown, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
@@ -57,8 +57,6 @@ const Dashboard = () => {
 
   const regions = useMemo(() => {
     if (!schools) return [];
-    // Note: If filtering by subject, schools list is already filtered, so this might shrink. 
-    // Ideally regions should be fetched from a static ref endpoint, but deriving from data is okay for now.
     return [...new Set(schools.map(s => s.region))].filter(Boolean).sort();
   }, [schools]);
 
@@ -71,7 +69,6 @@ const Dashboard = () => {
     return [...new Set(filtered.map(s => s.division))].filter(Boolean).sort();
   }, [schools, filters.region]);
 
-  // Client-side search filtering (avoids API hit on every keystroke)
   const filteredSchools = useMemo(() => {
     if (!Array.isArray(schools)) return [];
     if (!filters.search) return schools;
@@ -80,7 +77,6 @@ const Dashboard = () => {
     );
   }, [schools, filters.search]);
 
-  // --- SORTING & FILTERING LOGIC ---
   const sortedSchools = useMemo(() => {
     if (!Array.isArray(schools)) return [];
     
@@ -128,6 +124,41 @@ const Dashboard = () => {
 
   const handleResetFilters = () => {
     setFilters({ region: '', division: '', search: '', subject_id: '', balance_status: '' });
+    setSortConfig({ key: 'name', direction: 'asc' });
+  };
+
+   // --- CSV EXPORT LOGIC ---
+  const handleExportCSV = () => {
+    if (sortedSchools.length === 0) return;
+
+    // Define Headers
+    let csvContent = "School Code,School Name,Region,Division";
+    if (filters.subject_id) {
+        csvContent += `,Subject,Hours Balance`;
+    }
+    csvContent += "\n";
+
+    // Define Rows
+    sortedSchools.forEach(school => {
+        let row = `"${school.code}","${school.name}","${school.region}","${school.division}"`;
+        
+        if (filters.subject_id) {
+            const subjectName = school.filtered_subject_name || "N/A";
+            const balance = school.filtered_subject_balance !== undefined ? school.filtered_subject_balance : 0;
+            row += `,"${subjectName}","${balance}"`;
+        }
+        csvContent += row + "\n";
+    });
+
+    // Create Download Link
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `schools_export_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const requestSort = (key) => {
@@ -178,6 +209,14 @@ const Dashboard = () => {
           </div>
           
           <div className="flex flex-wrap gap-2 mt-4 md:mt-0 items-center">
+            <button
+                onClick={handleExportCSV}
+                className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 shadow-sm transition-colors mr-2"
+                disabled={sortedSchools.length === 0}
+            >
+                <Download size={16} className="mr-2" /> Export CSV
+            </button>
+
             <div className="bg-white border rounded-lg p-1 flex">
               <button
                 onClick={() => setViewMode('list')}

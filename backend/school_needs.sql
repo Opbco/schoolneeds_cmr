@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2025 at 11:04 PM
+-- Generation Time: Dec 10, 2025 at 12:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -133,11 +133,271 @@ CREATE TABLE `curriculum_matrix` (
 --
 
 INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_id`, `weekly_hours`) VALUES
-(1, 25, 1, 3, 3),
-(2, 26, 1, 3, 3),
-(3, 27, 1, 3, 4),
-(4, 28, 1, 3, 4),
-(5, 29, 7, 3, 6);
+(437, 28, 1, 21, 2),
+(438, 27, 1, 21, 2),
+(439, 31, 62, 42, 3),
+(440, 31, 62, 50, 3),
+(442, 10, 62, 42, 3),
+(443, 10, 62, 50, 3),
+(445, 28, 1, 17, 3),
+(446, 27, 1, 17, 3),
+(447, 26, 1, 17, 3),
+(448, 25, 1, 17, 3),
+(449, 29, 5, 17, 4),
+(450, 31, 5, 36, 1),
+(451, 31, 7, 36, 1),
+(452, 29, 10, 36, 1),
+(453, 29, 61, 36, 1),
+(454, 10, 10, 36, 1),
+(465, 29, 10, 17, 3),
+(466, 29, 61, 17, 4),
+(467, 29, 7, 17, 3),
+(468, 29, 62, 17, 3),
+(469, 31, 5, 17, 4),
+(470, 31, 7, 17, 3),
+(471, 31, 8, 17, 3),
+(472, 31, 10, 17, 3),
+(473, 31, 61, 17, 4),
+(474, 31, 62, 17, 3),
+(475, 10, 7, 17, 3),
+(476, 10, 8, 17, 3),
+(477, 10, 10, 17, 3),
+(478, 10, 61, 17, 4),
+(479, 10, 62, 17, 3),
+(480, 28, 6, 11, 2),
+(481, 27, 6, 11, 2),
+(482, 26, 6, 11, 2),
+(483, 25, 6, 11, 2),
+(484, 29, 7, 28, 3),
+(485, 29, 10, 28, 1),
+(486, 31, 7, 28, 2),
+(487, 31, 8, 28, 2),
+(488, 31, 10, 28, 1),
+(489, 10, 7, 28, 2),
+(490, 10, 8, 28, 2),
+(491, 10, 10, 28, 2),
+(492, 28, 6, 7, 2),
+(493, 27, 6, 7, 2),
+(494, 26, 6, 7, 2),
+(495, 25, 6, 7, 2),
+(496, 29, 5, 33, 1),
+(497, 29, 61, 33, 1),
+(498, 31, 5, 33, 1),
+(499, 31, 7, 33, 1),
+(500, 31, 8, 33, 1),
+(501, 31, 61, 33, 1),
+(502, 10, 7, 33, 1),
+(503, 10, 8, 33, 1),
+(504, 10, 61, 33, 1),
+(505, 28, 6, 33, 1),
+(506, 27, 6, 33, 1),
+(507, 26, 6, 33, 1),
+(508, 25, 6, 33, 1),
+(509, 28, 1, 33, 1),
+(510, 26, 1, 33, 1),
+(511, 25, 1, 33, 1),
+(512, 29, 7, 33, 1),
+(513, 31, 62, 43, 3),
+(514, 10, 62, 43, 3),
+(515, 29, 5, 25, 2),
+(516, 29, 61, 25, 2),
+(517, 29, 7, 25, 2),
+(518, 29, 62, 25, 2),
+(519, 31, 5, 25, 2),
+(520, 31, 7, 25, 2),
+(521, 31, 8, 25, 2),
+(522, 31, 10, 25, 2),
+(523, 31, 61, 25, 2),
+(524, 31, 62, 25, 2),
+(525, 10, 7, 25, 2),
+(526, 10, 8, 25, 2),
+(527, 10, 10, 25, 2),
+(528, 10, 61, 25, 2),
+(529, 10, 62, 25, 2),
+(530, 28, 1, 25, 2),
+(531, 27, 1, 25, 2),
+(532, 26, 1, 25, 2),
+(533, 25, 1, 25, 2),
+(534, 28, 1, 32, 1),
+(535, 27, 1, 32, 1),
+(536, 26, 1, 32, 1),
+(537, 25, 1, 32, 1),
+(538, 29, 5, 18, 4),
+(539, 29, 10, 18, 3),
+(540, 29, 61, 18, 4),
+(541, 29, 7, 18, 3),
+(542, 29, 62, 18, 3),
+(543, 31, 5, 18, 4),
+(544, 31, 7, 18, 2),
+(545, 31, 8, 18, 3),
+(546, 31, 10, 18, 3),
+(547, 31, 61, 18, 4),
+(548, 31, 62, 18, 4),
+(549, 10, 7, 18, 2),
+(550, 10, 8, 18, 3),
+(551, 10, 10, 18, 3),
+(552, 10, 61, 18, 4),
+(553, 10, 62, 18, 4),
+(554, 28, 6, 38, 4),
+(555, 27, 6, 38, 4),
+(556, 26, 6, 38, 4),
+(557, 25, 6, 38, 4),
+(558, 29, 5, 26, 2),
+(559, 29, 61, 26, 2),
+(560, 29, 7, 26, 2),
+(561, 29, 62, 26, 2),
+(562, 31, 5, 26, 3),
+(563, 31, 7, 26, 1),
+(564, 31, 8, 26, 2),
+(565, 31, 61, 26, 3),
+(566, 31, 62, 26, 1),
+(567, 10, 7, 26, 1),
+(568, 10, 8, 26, 1),
+(569, 10, 61, 26, 3),
+(570, 10, 62, 26, 1),
+(571, 28, 1, 27, 2),
+(572, 27, 1, 27, 2),
+(573, 26, 1, 27, 2),
+(574, 25, 1, 27, 2),
+(575, 29, 5, 27, 2),
+(576, 29, 61, 27, 2),
+(577, 29, 7, 27, 2),
+(578, 29, 62, 27, 2),
+(579, 31, 5, 27, 3),
+(580, 31, 7, 27, 1),
+(581, 31, 8, 27, 1),
+(582, 31, 61, 27, 3),
+(583, 31, 62, 27, 1),
+(584, 10, 7, 27, 1),
+(585, 10, 8, 27, 1),
+(586, 10, 61, 27, 3),
+(587, 10, 62, 27, 1),
+(588, 28, 6, 9, 2),
+(589, 27, 6, 9, 2),
+(590, 26, 6, 9, 2),
+(591, 25, 6, 9, 2),
+(592, 29, 5, 47, 2),
+(593, 29, 10, 47, 4),
+(594, 29, 61, 47, 2),
+(595, 29, 7, 47, 2),
+(596, 29, 62, 47, 2),
+(597, 31, 5, 47, 2),
+(598, 31, 7, 47, 2),
+(599, 31, 8, 47, 2),
+(600, 31, 10, 47, 5),
+(601, 31, 61, 47, 2),
+(602, 31, 62, 47, 2),
+(603, 10, 7, 47, 2),
+(604, 10, 8, 47, 2),
+(605, 10, 10, 47, 6),
+(606, 10, 61, 47, 2),
+(607, 10, 62, 47, 2),
+(608, 28, 1, 47, 2),
+(609, 27, 1, 47, 2),
+(610, 26, 1, 47, 2),
+(611, 25, 1, 47, 2),
+(612, 28, 6, 34, 2),
+(613, 27, 6, 34, 2),
+(614, 26, 6, 34, 2),
+(615, 25, 6, 34, 2),
+(616, 28, 1, 34, 2),
+(617, 27, 1, 34, 2),
+(618, 26, 1, 34, 2),
+(619, 25, 1, 34, 2),
+(620, 28, 6, 1, 3),
+(621, 27, 6, 1, 3),
+(622, 26, 6, 1, 3),
+(623, 25, 6, 1, 3),
+(624, 29, 5, 3, 3),
+(625, 29, 10, 3, 4),
+(626, 29, 61, 3, 3),
+(627, 29, 7, 3, 5),
+(628, 29, 62, 3, 3),
+(629, 31, 5, 3, 2),
+(630, 31, 7, 3, 6),
+(631, 31, 8, 3, 4),
+(632, 31, 10, 3, 4),
+(633, 31, 61, 3, 2),
+(634, 31, 62, 3, 2),
+(635, 10, 7, 3, 6),
+(636, 10, 8, 3, 4),
+(637, 10, 10, 3, 4),
+(638, 10, 61, 3, 2),
+(639, 10, 62, 3, 2),
+(640, 28, 1, 3, 4),
+(641, 27, 1, 3, 4),
+(642, 26, 1, 3, 4),
+(643, 25, 1, 3, 4),
+(644, 31, 5, 37, 2),
+(645, 31, 7, 37, 2),
+(646, 31, 8, 37, 2),
+(647, 31, 10, 37, 2),
+(648, 31, 61, 37, 4),
+(649, 31, 62, 37, 2),
+(650, 10, 5, 37, 4),
+(651, 10, 7, 37, 2),
+(652, 10, 8, 37, 2),
+(653, 10, 10, 37, 2),
+(654, 10, 61, 37, 6),
+(655, 10, 62, 37, 2),
+(656, 28, 6, 10, 2),
+(657, 27, 6, 10, 2),
+(658, 29, 7, 29, 3),
+(659, 29, 62, 29, 2),
+(660, 31, 7, 29, 3),
+(661, 31, 8, 29, 2),
+(662, 31, 10, 29, 2),
+(663, 31, 62, 29, 2),
+(664, 10, 7, 29, 4),
+(665, 10, 8, 29, 2),
+(666, 10, 10, 29, 2),
+(667, 10, 62, 29, 2),
+(668, 31, 62, 44, 3),
+(669, 10, 10, 44, 3),
+(670, 10, 62, 44, 3),
+(671, 31, 62, 45, 4),
+(672, 10, 10, 45, 4),
+(673, 10, 62, 45, 4),
+(674, 28, 6, 31, 2),
+(675, 27, 6, 31, 2),
+(676, 28, 1, 31, 2),
+(677, 27, 1, 31, 2),
+(678, 28, 1, 36, 1),
+(679, 27, 1, 36, 1),
+(680, 26, 1, 36, 1),
+(681, 25, 1, 36, 1),
+(682, 29, 5, 36, 1),
+(683, 29, 7, 36, 1),
+(689, 29, 5, 20, 3),
+(690, 29, 61, 20, 2),
+(691, 31, 5, 20, 3),
+(692, 31, 8, 20, 3),
+(693, 31, 61, 20, 2),
+(694, 10, 7, 20, 3),
+(695, 10, 8, 20, 3),
+(696, 10, 61, 20, 2),
+(697, 28, 1, 20, 3),
+(698, 27, 1, 20, 3),
+(699, 28, 6, 8, 2),
+(700, 27, 6, 8, 2),
+(701, 26, 6, 8, 2),
+(702, 25, 6, 8, 2),
+(711, 10, 5, 17, 4),
+(712, 10, 5, 33, 1),
+(713, 10, 5, 32, 1),
+(714, 10, 5, 26, 2),
+(715, 10, 5, 24, 3),
+(716, 10, 5, 27, 2),
+(717, 10, 5, 47, 1),
+(718, 10, 5, 48, 2),
+(719, 10, 5, 34, 1),
+(720, 10, 5, 23, 3),
+(721, 10, 5, 19, 3),
+(722, 10, 5, 36, 1),
+(723, 25, 1, 18, 6),
+(724, 26, 1, 18, 6),
+(725, 27, 1, 18, 4),
+(726, 28, 1, 18, 4);
 
 -- --------------------------------------------------------
 
@@ -177,8 +437,8 @@ CREATE TABLE `personnel` (
 --
 
 INSERT INTO `personnel` (`matricule`, `full_name`, `date_of_birth`, `grade_code`, `teaching_domain_id`, `status_code`) VALUES
-('0774916L', 'VAILOUMOU Daniel', '1980-12-31', 'PCEG', 2, 'ACTIVE'),
-('1043521M', 'Owono Philippe Brice', '1988-01-10', 'PLET', 4, 'ACTIVE');
+('0774916L', 'VAILOUMOU Daniel', '1980-12-29', 'PCEG', 2, 'ACTIVE'),
+('1043521M', 'Owono Philippe Brice', '1988-01-07', 'PCET', 4, 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -191,7 +451,7 @@ CREATE TABLE `personnel_postings` (
   `personnel_matricule` varchar(20) NOT NULL,
   `school_id` int(11) NOT NULL,
   `admin_position_code` varchar(20) DEFAULT NULL,
-  `start_date` date NOT NULL DEFAULT current_timestamp(),
+  `start_date` date NOT NULL,
   `end_date` date DEFAULT NULL,
   `is_active` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -204,8 +464,10 @@ INSERT INTO `personnel_postings` (`id`, `personnel_matricule`, `school_id`, `adm
 (1, '1043521M', 1, NULL, '2025-12-03', '2025-12-04', 0),
 (2, '1043521M', 3, 'SG', '2025-12-04', '2025-12-04', 0),
 (3, '1043521M', 3, 'CENSEUR', '2025-12-04', '2025-12-04', 0),
-(4, '1043521M', 11, NULL, '2025-12-04', NULL, 1),
-(5, '0774916L', 12, 'SG', '2025-12-04', NULL, 1);
+(4, '1043521M', 11, NULL, '2025-12-04', '2025-12-09', 0),
+(5, '0774916L', 12, 'SG', '2025-12-04', NULL, 1),
+(6, '1043521M', 11, 'CENSEUR', '2025-12-09', '2025-12-09', 0),
+(7, '1043521M', 26, NULL, '2025-12-09', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -398,7 +660,7 @@ INSERT INTO `ref_series` (`id`, `code`, `name`, `education_type_id`) VALUES
 (1, 'GEN', 'General Education', 1),
 (4, 'A', 'Lettres-Philo', 1),
 (5, 'A4', 'Lettres-Langues (All/Esp)', 1),
-(6, 'ABI', 'Lettres Bilingue', 1),
+(6, 'BIL', 'Lettres Bilingue', 1),
 (7, 'C', 'Mathématiques et Physique', 1),
 (8, 'D', 'Mathématiques et SVT', 1),
 (9, 'E', 'Mathématiques et Technologie', 1),
@@ -434,7 +696,9 @@ INSERT INTO `ref_series` (`id`, `code`, `name`, `education_type_id`) VALUES
 (39, 'HO', 'Hôtellerie', 2),
 (40, 'TO', 'Tourisme', 2),
 (41, 'IS', 'Infirmerie Scolaire', 2),
-(59, 'TECH', 'TECH (Nombre de spécialités)', 2);
+(59, 'TECH', 'TECH (Nombre de spécialités)', 2),
+(61, 'SH', 'Sciences Humaines', 1),
+(62, 'AC', 'Arts et Cultures', 1);
 
 -- --------------------------------------------------------
 
@@ -457,7 +721,74 @@ INSERT INTO `ref_subjects` (`id`, `code`, `name`, `domain_id`) VALUES
 (1, 'MATH_EN', 'Mathematics', 1),
 (2, 'INFO_EN', 'Computer Sciences', 4),
 (3, 'MATH_FR', 'Mathématiques', 2),
-(4, 'CONST_BD', 'Building Construction', 3);
+(5, 'ANG_EN', 'English Language', 6),
+(6, 'LIT_EN', 'English Literature', 6),
+(7, 'ECM_EN', 'Citizenship Education', 7),
+(8, 'GEO_EN', 'Geography', 7),
+(9, 'HIST_EN', 'History', 7),
+(10, 'PHYS_EN', 'Physics', 8),
+(11, 'BIO_EN', 'Biology', 9),
+(12, 'ARTS_EN', 'Arts and Culture', 10),
+(13, 'CULT_EN', 'National Cultures', 11),
+(14, 'LANG_EN', 'National Languages', 12),
+(15, 'EPS_EN', 'Sports and Physical Education', 13),
+(16, 'TM_EN', 'Manual Labour', 14),
+(17, 'ANG_FR', 'Anglais', 16),
+(18, 'FRA_FR', 'Français', 17),
+(19, 'LIT_FRA_FR', 'Littérature Française', 17),
+(20, 'ESP_FR', 'Espagnol', 18),
+(21, 'ALL_FR', 'Allemand', 19),
+(22, 'LCA_FR', 'Lettres classiques (Latin/Grec)', 20),
+(23, 'LAT_FR', 'Latin', 20),
+(24, 'GREC_FR', 'Grec', 20),
+(25, 'ECM_FR', 'Éducation à la Citoyenneté et à la Morale (ECM)', 21),
+(26, 'GEO_FR', 'Géographie', 21),
+(27, 'HIST_FR', 'Histoire', 21),
+(28, 'CHIM_FR', 'Chimie', 22),
+(29, 'PHYS_FR', 'Physique', 22),
+(30, 'BIO_FR', 'Biologie', 23),
+(31, 'SVT_FR', 'Science de la Vie de la Terre et Environnement (SVTEEHB)', 24),
+(32, 'ARTS_FR', 'Éducation artistique et culturelle', 25),
+(33, 'CULT_FR', 'Cultures Nationales', 26),
+(34, 'LANG_FR', 'Langues Nationales', 27),
+(35, 'EPS_FR', 'Éducation Physique et Sportive (EPS)', 28),
+(36, 'TM_FR', 'Travail Manuel', 29),
+(37, 'PHILO_FR', 'Philosophie', 30),
+(38, 'FRA_EN', 'French', 31),
+(39, 'LIT_ANG_FR', 'Anglais Littérature', 31),
+(40, 'CINE_FOND_FR', 'Fondamentaux du cinéma', 32),
+(41, 'CINE_GENRE_FR', 'Genres cinématographiques', 33),
+(42, 'CINE_ANAL_FR', 'Analyse filmique', 34),
+(43, 'CINE_ECO_FR', 'Économie du cinéma', 35),
+(44, 'CINE_REAL_FR', 'Processus de réalisation', 36),
+(45, 'CINE_PROJ_FR', 'Projet de fin de formation', 37),
+(46, 'CINE_SOC_FR', 'Sociologie du cinéma', 38),
+(47, 'INFO_FR', 'Informatique', 5),
+(48, 'LANG_FR', 'Langue française', 17),
+(49, 'ECM_FR', 'Éducation civique (ECM)', 21),
+(50, 'ANF_FR', 'Analyse filmique', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ref_subject_groups`
+--
+
+CREATE TABLE `ref_subject_groups` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ref_subject_groups`
+--
+
+INSERT INTO `ref_subject_groups` (`id`, `name`) VALUES
+(4, 'Arts et Cultures Nationales'),
+(5, 'Développement Personnel'),
+(1, 'Langues et Littératures'),
+(3, 'Sciences et Technologies'),
+(2, 'Sciences Humaines');
 
 -- --------------------------------------------------------
 
@@ -489,19 +820,52 @@ INSERT INTO `ref_subsystems` (`id`, `code`, `name`) VALUES
 CREATE TABLE `ref_teaching_domains` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `subsystem_id` int(11) DEFAULT NULL
+  `subsystem_id` int(11) DEFAULT NULL,
+  `groupe_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ref_teaching_domains`
 --
 
-INSERT INTO `ref_teaching_domains` (`id`, `name`, `subsystem_id`) VALUES
-(1, 'Mathematics', 1),
-(2, 'Mathématiques', 2),
-(3, 'Civil Engineering', 1),
-(4, 'Computer Sciences', 1),
-(5, 'Informatique', 2);
+INSERT INTO `ref_teaching_domains` (`id`, `name`, `subsystem_id`, `groupe_id`) VALUES
+(1, 'Mathematics', 1, 3),
+(2, 'Mathématiques', 2, 3),
+(4, 'Computer Sciences', 1, 3),
+(5, 'Informatique', 2, 3),
+(6, 'English', 1, NULL),
+(7, 'History, Geography, CE', 1, NULL),
+(8, 'Physics', 1, NULL),
+(9, 'Biology', 1, NULL),
+(10, 'Arts and Culture', 1, NULL),
+(11, 'National Cultures', 1, NULL),
+(12, 'National Languages', 1, NULL),
+(13, 'Sports and Physical Education', 1, NULL),
+(14, 'Manual Labour', 1, NULL),
+(15, 'Philosophy', 1, NULL),
+(16, 'Anglais', 2, NULL),
+(17, 'Français', 2, NULL),
+(18, 'Espagnol', 2, NULL),
+(19, 'Allemand', 2, NULL),
+(20, 'Lettres Classiques', 2, NULL),
+(21, 'Histoire, Geographie, ECM', 2, NULL),
+(22, 'Physique-Chimie-Technologie', 2, NULL),
+(23, 'Biologie', 2, NULL),
+(24, 'Science de la Vie de la Terre et Environnement (SVTEEHB)', 2, NULL),
+(25, 'Éducation artistique et culturelle', 2, NULL),
+(26, 'Cultures Nationales', 2, NULL),
+(27, 'Langues Nationales', 2, NULL),
+(28, 'Éducation Physique et Sportive (EPS)', 2, NULL),
+(29, 'Travail Manuel', 2, NULL),
+(30, 'Philosophie', 2, NULL),
+(31, 'Lettres Bilingues', 3, NULL),
+(32, 'Fondamentaux du cinéma', 2, NULL),
+(33, 'Genres cinématographiques', 2, NULL),
+(34, 'Analyse filmique', 2, NULL),
+(35, 'Économie du cinéma', 2, NULL),
+(36, 'Processus de réalisation', 2, NULL),
+(37, 'Projet de fin de formation', 2, NULL),
+(38, 'Sociologie du cinéma', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -780,10 +1144,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (122, 9, 14, 1, 2),
 (123, 9, 15, 1, 2),
 (124, 9, 16, 1, 1),
-(125, 10, 25, 1, 4),
-(126, 10, 26, 1, 4),
-(127, 10, 27, 1, 4),
-(128, 10, 28, 1, 3),
 (129, 11, 25, 1, 2),
 (130, 11, 26, 1, 2),
 (131, 11, 27, 1, 2),
@@ -846,10 +1206,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (189, 15, 10, 4, 2),
 (190, 15, 10, 7, 1),
 (191, 15, 10, 8, 1),
-(192, 16, 25, 1, 4),
-(193, 16, 26, 1, 4),
-(194, 16, 27, 1, 4),
-(195, 16, 28, 1, 4),
 (196, 17, 25, 1, 2),
 (197, 17, 26, 1, 2),
 (198, 17, 27, 1, 2),
@@ -878,10 +1234,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (222, 18, 13, 1, 1),
 (223, 18, 14, 1, 1),
 (224, 18, 15, 1, 1),
-(225, 19, 25, 1, 4),
-(226, 19, 26, 1, 4),
-(227, 19, 27, 1, 4),
-(228, 19, 28, 1, 4),
 (229, 20, 25, 1, 4),
 (230, 20, 26, 1, 4),
 (231, 20, 27, 1, 3),
@@ -946,7 +1298,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (294, 24, 12, 1, 1),
 (295, 24, 13, 1, 1),
 (296, 24, 14, 1, 1),
-(299, 25, 10, 4, 10),
 (300, 26, 25, 1, 1),
 (301, 26, 26, 1, 2),
 (302, 26, 27, 1, 2),
@@ -1059,10 +1410,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (426, 35, 15, 1, 2),
 (427, 35, 16, 1, 2),
 (428, 35, 17, 1, 2),
-(429, 36, 25, 1, 4),
-(430, 36, 26, 1, 4),
-(431, 36, 27, 1, 4),
-(432, 36, 28, 1, 4),
 (434, 37, 25, 1, 2),
 (435, 37, 26, 1, 2),
 (436, 37, 27, 1, 2),
@@ -1289,11 +1636,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (679, 55, 13, 1, 1),
 (680, 55, 14, 1, 1),
 (681, 55, 16, 1, 1),
-(682, 56, 25, 1, 5),
-(683, 56, 26, 1, 3),
-(684, 56, 27, 1, 3),
-(685, 56, 28, 1, 3),
-(687, 56, 29, 7, 4),
 (688, 56, 31, 59, 4),
 (689, 57, 25, 1, 2),
 (690, 57, 26, 1, 2),
@@ -1505,11 +1847,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (897, 73, 10, 4, 2),
 (898, 73, 10, 7, 1),
 (899, 73, 10, 8, 1),
-(900, 74, 25, 1, 6),
-(901, 74, 26, 1, 6),
-(902, 74, 27, 1, 6),
-(903, 74, 28, 1, 6),
-(904, 74, 29, 7, 5),
 (905, 74, 31, 59, 4),
 (906, 75, 25, 1, 2),
 (907, 75, 26, 1, 2),
@@ -1744,10 +2081,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (1140, 93, 31, 8, 1),
 (1141, 93, 10, 4, 2),
 (1142, 93, 10, 8, 1),
-(1143, 94, 25, 1, 3),
-(1144, 94, 26, 1, 3),
-(1145, 94, 27, 1, 3),
-(1146, 94, 28, 1, 3),
 (1147, 95, 25, 1, 3),
 (1148, 95, 26, 1, 3),
 (1149, 95, 27, 1, 5),
@@ -1901,10 +2234,6 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (1297, 107, 14, 1, 2),
 (1298, 107, 15, 1, 2),
 (1299, 107, 16, 1, 2),
-(1300, 108, 25, 1, 1),
-(1301, 108, 26, 1, 1),
-(1302, 108, 27, 1, 1),
-(1303, 108, 28, 1, 1),
 (1304, 109, 25, 1, 1),
 (1305, 109, 26, 1, 1),
 (1306, 109, 28, 1, 1),
@@ -2078,13 +2407,7 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (1477, 125, 29, 4, 2),
 (1478, 125, 31, 4, 2),
 (1479, 125, 10, 4, 2),
-(1480, 126, 25, 1, 8),
-(1481, 126, 26, 1, 8),
-(1482, 126, 27, 1, 7),
-(1483, 126, 28, 1, 7),
-(1484, 126, 29, 7, 12),
 (1485, 126, 31, 59, 15),
-(1486, 126, 10, 1, 12),
 (1487, 127, 25, 1, 2),
 (1488, 127, 26, 1, 2),
 (1489, 127, 27, 1, 2),
@@ -2132,7 +2455,49 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (1531, 129, 10, 7, 1),
 (1532, 129, 10, 8, 1),
 (1533, 129, 10, 10, 1),
-(1534, 1, 31, 8, 1);
+(1534, 1, 31, 8, 1),
+(1535, 11, 11, 1, 1),
+(1536, 126, 29, 59, 12),
+(1537, 126, 10, 59, 12),
+(1538, 126, 18, 59, 8),
+(1539, 126, 19, 59, 8),
+(1540, 126, 20, 59, 7),
+(1541, 126, 21, 59, 7),
+(1542, 16, 18, 59, 4),
+(1543, 16, 19, 59, 4),
+(1544, 16, 20, 59, 4),
+(1545, 16, 21, 59, 4),
+(1546, 36, 18, 59, 4),
+(1547, 36, 19, 59, 4),
+(1548, 36, 20, 59, 4),
+(1549, 36, 21, 59, 4),
+(1550, 56, 29, 59, 4),
+(1551, 56, 18, 59, 5),
+(1552, 56, 19, 59, 3),
+(1553, 56, 20, 59, 3),
+(1554, 56, 21, 59, 3),
+(1555, 74, 18, 59, 6),
+(1556, 74, 19, 59, 6),
+(1557, 74, 20, 59, 6),
+(1558, 74, 21, 59, 6),
+(1559, 74, 29, 59, 5),
+(1560, 10, 18, 59, 4),
+(1561, 10, 19, 59, 4),
+(1562, 10, 20, 59, 4),
+(1563, 10, 21, 59, 3),
+(1564, 19, 18, 59, 4),
+(1565, 19, 19, 59, 4),
+(1566, 19, 20, 59, 4),
+(1567, 19, 21, 59, 4),
+(1568, 108, 18, 59, 1),
+(1569, 108, 19, 59, 1),
+(1570, 108, 20, 59, 1),
+(1571, 108, 21, 59, 1),
+(1572, 94, 18, 59, 3),
+(1573, 94, 19, 59, 3),
+(1574, 94, 20, 59, 3),
+(1575, 94, 21, 59, 3),
+(1576, 25, 10, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -2271,6 +2636,13 @@ ALTER TABLE `ref_subjects`
   ADD KEY `domain_id` (`domain_id`);
 
 --
+-- Indexes for table `ref_subject_groups`
+--
+ALTER TABLE `ref_subject_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idx_unique_group` (`name`);
+
+--
 -- Indexes for table `ref_subsystems`
 --
 ALTER TABLE `ref_subsystems`
@@ -2281,7 +2653,8 @@ ALTER TABLE `ref_subsystems`
 --
 ALTER TABLE `ref_teaching_domains`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `subsystem_id` (`subsystem_id`);
+  ADD KEY `subsystem_id` (`subsystem_id`),
+  ADD KEY `ref_subject_group_ibfk` (`groupe_id`);
 
 --
 -- Indexes for table `schools`
@@ -2308,13 +2681,13 @@ ALTER TABLE `school_structure_inputs`
 -- AUTO_INCREMENT for table `curriculum_matrix`
 --
 ALTER TABLE `curriculum_matrix`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=727;
 
 --
 -- AUTO_INCREMENT for table `personnel_postings`
 --
 ALTER TABLE `personnel_postings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ref_class_levels`
@@ -2338,13 +2711,19 @@ ALTER TABLE `ref_school_types`
 -- AUTO_INCREMENT for table `ref_series`
 --
 ALTER TABLE `ref_series`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `ref_subjects`
 --
 ALTER TABLE `ref_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `ref_subject_groups`
+--
+ALTER TABLE `ref_subject_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ref_subsystems`
@@ -2356,7 +2735,7 @@ ALTER TABLE `ref_subsystems`
 -- AUTO_INCREMENT for table `ref_teaching_domains`
 --
 ALTER TABLE `ref_teaching_domains`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `schools`
@@ -2368,7 +2747,7 @@ ALTER TABLE `schools`
 -- AUTO_INCREMENT for table `school_structure_inputs`
 --
 ALTER TABLE `school_structure_inputs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1535;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1577;
 
 --
 -- Constraints for dumped tables
@@ -2421,6 +2800,7 @@ ALTER TABLE `ref_subjects`
 -- Constraints for table `ref_teaching_domains`
 --
 ALTER TABLE `ref_teaching_domains`
+  ADD CONSTRAINT `ref_subject_group_ibfk` FOREIGN KEY (`groupe_id`) REFERENCES `ref_subject_groups` (`id`),
   ADD CONSTRAINT `ref_teaching_domains_ibfk_1` FOREIGN KEY (`subsystem_id`) REFERENCES `ref_subsystems` (`id`);
 
 --
