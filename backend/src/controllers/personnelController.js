@@ -6,7 +6,7 @@ class PersonnelController {
   async getPersonnel(req, res, next) {
     try {
       const page = req.query.page || 1;
-      const limit = req.query.limit || 20;
+      const limit = req.query.limit || 100;
       // Pass the entire query object as filters (school_id, status_code, etc.)
       const filters = req.query; 
       const result = await personnelService.getAllPersonnel(filters, page, limit);
