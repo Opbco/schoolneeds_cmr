@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2025 at 08:31 AM
+-- Generation Time: Dec 10, 2025 at 03:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -201,16 +201,16 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (514, 10, 62, 43, 3),
 (515, 29, 5, 25, 2),
 (516, 29, 61, 25, 2),
-(517, 29, 7, 25, 2),
+(517, 29, 7, 25, 1),
 (518, 29, 62, 25, 2),
 (519, 31, 5, 25, 2),
-(520, 31, 7, 25, 2),
-(521, 31, 8, 25, 2),
+(520, 31, 7, 25, 1),
+(521, 31, 8, 25, 1),
 (522, 31, 10, 25, 2),
 (523, 31, 61, 25, 2),
 (524, 31, 62, 25, 2),
-(525, 10, 7, 25, 2),
-(526, 10, 8, 25, 2),
+(525, 10, 7, 25, 1),
+(526, 10, 8, 25, 1),
 (527, 10, 10, 25, 2),
 (528, 10, 61, 25, 2),
 (529, 10, 62, 25, 2),
@@ -222,12 +222,9 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (535, 27, 1, 32, 1),
 (536, 26, 1, 32, 1),
 (537, 25, 1, 32, 1),
-(538, 29, 5, 18, 4),
 (539, 29, 10, 18, 3),
 (540, 29, 61, 18, 4),
-(541, 29, 7, 18, 3),
 (542, 29, 62, 18, 3),
-(543, 31, 5, 18, 4),
 (544, 31, 7, 18, 2),
 (545, 31, 8, 18, 3),
 (546, 31, 10, 18, 3),
@@ -246,13 +243,13 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (559, 29, 61, 26, 2),
 (560, 29, 7, 26, 2),
 (561, 29, 62, 26, 2),
-(562, 31, 5, 26, 3),
-(563, 31, 7, 26, 1),
+(562, 31, 5, 26, 2),
+(563, 31, 7, 26, 2),
 (564, 31, 8, 26, 2),
 (565, 31, 61, 26, 3),
 (566, 31, 62, 26, 1),
-(567, 10, 7, 26, 1),
-(568, 10, 8, 26, 1),
+(567, 10, 7, 26, 2),
+(568, 10, 8, 26, 2),
 (569, 10, 61, 26, 3),
 (570, 10, 62, 26, 1),
 (571, 28, 1, 27, 2),
@@ -263,13 +260,11 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (576, 29, 61, 27, 2),
 (577, 29, 7, 27, 2),
 (578, 29, 62, 27, 2),
-(579, 31, 5, 27, 3),
-(580, 31, 7, 27, 1),
-(581, 31, 8, 27, 1),
+(579, 31, 5, 27, 2),
+(580, 31, 7, 27, 2),
 (582, 31, 61, 27, 3),
 (583, 31, 62, 27, 1),
-(584, 10, 7, 27, 1),
-(585, 10, 8, 27, 1),
+(584, 10, 7, 27, 2),
 (586, 10, 61, 27, 3),
 (587, 10, 62, 27, 1),
 (588, 28, 6, 9, 2),
@@ -279,7 +274,7 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (592, 29, 5, 47, 2),
 (593, 29, 10, 47, 4),
 (594, 29, 61, 47, 2),
-(595, 29, 7, 47, 2),
+(595, 29, 7, 47, 3),
 (596, 29, 62, 47, 2),
 (597, 31, 5, 47, 2),
 (598, 31, 7, 47, 2),
@@ -300,15 +295,15 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (613, 27, 6, 34, 2),
 (614, 26, 6, 34, 2),
 (615, 25, 6, 34, 2),
-(616, 28, 1, 34, 2),
-(617, 27, 1, 34, 2),
-(618, 26, 1, 34, 2),
-(619, 25, 1, 34, 2),
+(616, 28, 1, 34, 1),
+(617, 27, 1, 34, 1),
+(618, 26, 1, 34, 1),
+(619, 25, 1, 34, 1),
 (620, 28, 6, 1, 3),
 (621, 27, 6, 1, 3),
 (622, 26, 6, 1, 3),
 (623, 25, 6, 1, 3),
-(624, 29, 5, 3, 3),
+(624, 29, 5, 3, 2),
 (625, 29, 10, 3, 4),
 (626, 29, 61, 3, 3),
 (627, 29, 7, 3, 5),
@@ -344,7 +339,7 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (657, 27, 6, 10, 2),
 (658, 29, 7, 29, 3),
 (659, 29, 62, 29, 2),
-(660, 31, 7, 29, 3),
+(660, 31, 7, 29, 4),
 (661, 31, 8, 29, 2),
 (662, 31, 10, 29, 2),
 (663, 31, 62, 29, 2),
@@ -362,10 +357,10 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (675, 27, 6, 31, 2),
 (676, 28, 1, 31, 2),
 (677, 27, 1, 31, 2),
-(678, 28, 1, 36, 1),
-(679, 27, 1, 36, 1),
-(680, 26, 1, 36, 1),
-(681, 25, 1, 36, 1),
+(678, 28, 1, 36, 2),
+(679, 27, 1, 36, 2),
+(680, 26, 1, 36, 2),
+(681, 25, 1, 36, 2),
 (682, 29, 5, 36, 1),
 (683, 29, 7, 36, 1),
 (689, 29, 5, 20, 3),
@@ -376,8 +371,8 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (694, 10, 7, 20, 3),
 (695, 10, 8, 20, 3),
 (696, 10, 61, 20, 2),
-(697, 28, 1, 20, 3),
-(698, 27, 1, 20, 3),
+(697, 28, 1, 20, 2),
+(698, 27, 1, 20, 2),
 (699, 28, 6, 8, 2),
 (700, 27, 6, 8, 2),
 (701, 26, 6, 8, 2),
@@ -397,7 +392,43 @@ INSERT INTO `curriculum_matrix` (`id`, `class_level_id`, `series_id`, `subject_i
 (723, 25, 1, 18, 6),
 (724, 26, 1, 18, 6),
 (725, 27, 1, 18, 4),
-(726, 28, 1, 18, 4);
+(726, 28, 1, 18, 4),
+(727, 25, 1, 26, 2),
+(728, 26, 1, 26, 2),
+(729, 27, 1, 26, 2),
+(730, 28, 1, 26, 2),
+(731, 10, 5, 25, 2),
+(732, 25, 1, 35, 2),
+(733, 25, 1, 30, 2),
+(734, 25, 1, 22, 2),
+(735, 26, 1, 35, 2),
+(736, 26, 1, 30, 2),
+(737, 26, 1, 22, 2),
+(738, 27, 1, 33, 1),
+(739, 27, 1, 22, 1),
+(740, 27, 1, 52, 2),
+(741, 27, 1, 35, 2),
+(742, 28, 1, 35, 2),
+(743, 28, 1, 52, 2),
+(744, 28, 1, 22, 1),
+(745, 29, 7, 34, 1),
+(746, 29, 7, 19, 2),
+(748, 29, 7, 35, 2),
+(749, 29, 7, 31, 2),
+(750, 29, 5, 35, 2),
+(751, 29, 5, 34, 1),
+(752, 29, 5, 21, 3),
+(754, 29, 5, 22, 3),
+(755, 29, 5, 19, 3),
+(756, 29, 5, 48, 2),
+(757, 29, 5, 37, 2),
+(758, 31, 5, 19, 3),
+(759, 31, 5, 48, 2),
+(760, 31, 5, 35, 2),
+(761, 31, 5, 34, 1),
+(762, 31, 5, 32, 1),
+(763, 31, 5, 22, 3),
+(764, 31, 7, 34, 1);
 
 -- --------------------------------------------------------
 
@@ -6882,11 +6913,11 @@ INSERT INTO `ref_grades` (`grade_code`, `name`, `base_weekly_hours`) VALUES
 ('MPEPS', 'Maître Principal d’Éducation Physique et Sportive', 25),
 ('PAENI', 'Professeur Adjoint d’Écoles Normales d\'Instituteurs', 20),
 ('PAEPS', 'Professeur Adjoint d’Éducation Physique et Sportive', 20),
-('PCEG', 'Professeur des Collèges', 22),
+('PCEG', 'Professeur des Collèges', 20),
 ('PCET', 'Professeur des Collèges Techniques', 22),
 ('PENI', 'Professeur d’Écoles Normales d\'Instituteurs', 18),
 ('PEPS', 'Professeur d’Éducation Physique et Sportive', 18),
-('PLEG', 'Professeur des Lycées', 20),
+('PLEG', 'Professeur des Lycées', 18),
 ('PLET', 'Professeur des Lycées Techniques', 20);
 
 -- --------------------------------------------------------
@@ -7077,7 +7108,8 @@ INSERT INTO `ref_subjects` (`id`, `code`, `name`, `domain_id`) VALUES
 (48, 'LANG_FR', 'Langue française', 17),
 (49, 'ECM_FR', 'Éducation civique (ECM)', 21),
 (50, 'ANF_FR', 'Analyse filmique', 10),
-(51, 'ARAB_FR', 'ARABE', 81);
+(51, 'ARAB_FR', 'ARABE', 81),
+(52, 'SPT_FR', 'Sciences Physiques et Technologies', 22);
 
 -- --------------------------------------------------------
 
@@ -8047,12 +8079,9 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (740, 61, 26, 1, 2),
 (741, 61, 27, 1, 4),
 (742, 61, 28, 1, 4),
-(743, 61, 29, 4, 4),
 (744, 61, 29, 7, 1),
-(745, 61, 31, 4, 4),
 (746, 61, 31, 7, 1),
 (747, 61, 31, 8, 1),
-(748, 61, 10, 4, 4),
 (749, 61, 10, 7, 1),
 (750, 61, 10, 8, 1),
 (751, 61, 11, 1, 2),
@@ -8854,7 +8883,10 @@ INSERT INTO `school_structure_inputs` (`id`, `school_id`, `class_level_id`, `ser
 (1573, 94, 19, 59, 3),
 (1574, 94, 20, 59, 3),
 (1575, 94, 21, 59, 3),
-(1576, 25, 10, 5, 10);
+(1576, 25, 10, 5, 10),
+(1577, 61, 10, 5, 4),
+(1578, 61, 29, 5, 4),
+(1579, 61, 31, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -9038,7 +9070,7 @@ ALTER TABLE `school_structure_inputs`
 -- AUTO_INCREMENT for table `curriculum_matrix`
 --
 ALTER TABLE `curriculum_matrix`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=727;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=765;
 
 --
 -- AUTO_INCREMENT for table `personnel_postings`
@@ -9074,7 +9106,7 @@ ALTER TABLE `ref_series`
 -- AUTO_INCREMENT for table `ref_subjects`
 --
 ALTER TABLE `ref_subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `ref_subject_groups`
@@ -9104,7 +9136,7 @@ ALTER TABLE `schools`
 -- AUTO_INCREMENT for table `school_structure_inputs`
 --
 ALTER TABLE `school_structure_inputs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1577;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1580;
 
 --
 -- Constraints for dumped tables
