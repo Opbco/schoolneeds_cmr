@@ -1,4 +1,6 @@
 const personnelService = require('../services/personnelService');
+const path = require('path');
+const fs = require('fs');
 
 class PersonnelController {
   async getPersonnel(req, res, next) {
@@ -58,6 +60,46 @@ class PersonnelController {
     try {
       const result = await personnelService.getAllStatuses();
       res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async importPersonnel(req, res, next) {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'No CSV file uploaded.' });
+      }
+
+      const filePath = req.file.path;
+      const result = await personnelService.importPersonnelFromCSV(filePath);
+      
+      res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async importFromLocal(req, res, next) {
+    try {
+      const { filename } = req.body;
+      if (!filename) {
+        //return res.status(400).json({ message: 'Filename is required.' });
+        filename = 'enseignants_detail.csv'
+      }
+
+      const safeFilename = path.basename(filename);
+      
+      const filePath = path.join(__dirname, '../../uploads', safeFilename);
+
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ message: `File '${safeFilename}' not found in uploads folder.` });
+      }
+
+      // Reuse the existing service logic
+      const result = await personnelService.importPersonnelFromCSV(filePath);
+      
+      res.status(200).json(result);
     } catch (error) {
       next(error);
     }

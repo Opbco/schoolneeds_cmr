@@ -1,7 +1,9 @@
 const db = require('../config/db');
+const fs = require('fs');
+const csv = require('csv-parser');
 
 class PersonnelService {
-  async getAllPersonnel(filters = {}, page = 1, limit = 20) {
+  async getAllPersonnel(filters = {}, page = 1, limit = 100) {
     const offset = (page - 1) * limit;
     
     let query = `
@@ -172,6 +174,118 @@ class PersonnelService {
   async getAllStatuses() {
     const [rows] = await db.query('SELECT * FROM ref_personnel_status');
     return rows;
+  }
+
+  /**
+   * Helper: Convert CSV Date (M/D/YYYY) to MySQL Date (YYYY-MM-DD)
+   */
+  formatDate(dateStr) {
+    if (!dateStr) return null;
+    const parts = dateStr.split('/');
+    if (parts.length === 3) {
+      // Assuming Input is M/D/YYYY
+      const [month, day, year] = parts;
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    }
+    return null; // Return null if format is unexpected
+  }
+
+  /**
+   * Helper: Load Reference Maps to avoid querying DB for every row
+   */
+  async loadReferences() {
+    const [schools] = await db.query('SELECT id, name FROM schools');
+    const [domains] = await db.query('SELECT id, name FROM ref_teaching_domains');
+    
+    // Create Lookup Maps (Name -> ID)
+    const schoolMap = new Map(schools.map(s => [s.name.toUpperCase().trim(), s.id]));
+    const domainMap = new Map(domains.map(d => [d.name.toUpperCase().trim(), d.id]));
+    
+    return { schoolMap, domainMap };
+  }
+
+  /**
+   * Main Import Function
+   */
+  async importPersonnelFromCSV(filePath) {
+    const results = [];
+    const { schoolMap, domainMap } = await this.loadReferences();
+    const connection = await db.getConnection();
+
+    return new Promise((resolve, reject) => {
+      fs.createReadStream(filePath)
+        .pipe(csv({ mapHeaders: ({ header }) => header.trim() })) // Trim header spaces (e.g. " full_name")
+        .on('data', (data) => results.push(data))
+        .on('end', async () => {
+          try {
+            await connection.beginTransaction();
+
+            for (const row of results) {
+              // 1. Prepare Data
+              const matricule = row.matricule;
+              const fullName = row.full_name;
+              const birthDate = this.formatDate(row.date_of_birth);
+              const gradeCode = row.grade_code;
+              const status = row.status_code || 'ACTIVE';
+              
+              // 2. Resolve Foreign Keys
+              // Fallback: If domain not found, use a default or handle error. Here we use NULL or ID 1 if critical.
+              // Ideally, you might want to create the domain on the fly, but we'll stick to lookup.
+              const domainName = row.teaching_domain ? row.teaching_domain.toUpperCase().trim() : '';
+              console.log(domainName);
+              const domainId = domainMap.get(domainName) || null;
+
+              const schoolName = row.school ? row.school.toUpperCase().trim() : '';
+              const schoolId = schoolMap.get(schoolName) || null;
+
+              const adminPos = row.admin_position_code && row.admin_position_code.trim() !== '' ? row.admin_position_code : null;
+              const isActive = row.is_active === '1' ? 1 : 0;
+
+              // 3. Insert/Update Personnel
+              // Using ON DUPLICATE KEY UPDATE to handle re-imports safely
+              await connection.query(`
+                INSERT INTO personnel (matricule, full_name, date_of_birth, grade_code, teaching_domain_id, status_code)
+                VALUES (?, ?, ?, ?, ?, ?)
+                ON DUPLICATE KEY UPDATE 
+                  full_name = VALUES(full_name),
+                  date_of_birth = VALUES(date_of_birth),
+                  grade_code = VALUES(grade_code),
+                  teaching_domain_id = VALUES(teaching_domain_id),
+                  status_code = VALUES(status_code)
+              `, [matricule, fullName, birthDate, gradeCode, domainId, status]);
+
+              // 4. Insert Posting (Only if School matches)
+              if (schoolId) {
+                // Check if this specific posting already exists to avoid duplication
+                // Assuming one active posting per school per person? 
+                // For simplicity, we insert. You might want to close old postings here.
+                
+                // Optional: Deactivate old active postings for this user?
+                // await connection.query('UPDATE personnel_postings SET is_active = 0 WHERE personnel_matricule = ?', [matricule]);
+
+                await connection.query(`
+                  INSERT INTO personnel_postings (personnel_matricule, school_id, admin_position_code, is_active, start_date)
+                  VALUES (?, ?, ?, ?, CURDATE())
+                `, [matricule, schoolId, adminPos, isActive]);
+              }
+            }
+
+            await connection.commit();
+            resolve({ message: `Successfully processed ${results.length} records.` });
+          } catch (error) {
+            await connection.rollback();
+            reject(error);
+          } finally {
+            connection.release();
+            // Cleanup uploaded file
+            //fs.unlinkSync(filePath); 
+          }
+        })
+        .on('error', (error) => {
+          connection.release();
+          reject(error);
+        });
+    });
   }
 }
 
