@@ -110,17 +110,21 @@ class SchoolService {
     return result.affectedRows > 0;
   }
 
-  // --- REFERENCE DATA METHODS ---
+  // =================================================================
+  // REFERENCE DATA MANAGEMENT (CRUD)
+  // =================================================================
 
+  // --- 1. CLASSES (Read Only as requested, or add others if needed) ---
   async getAllClasses() {
     const query = 'SELECT id, name, cycle FROM ref_class_levels ORDER BY id ASC';
     const [rows] = await db.query(query);
     return rows;
   }
 
+  // --- 2. SERIES (ref_series) ---
   async getAllSeries() {
     const query = `
-      SELECT s.id, s.code, s.name, e.name AS education_type_name 
+      SELECT s.id, s.code, s.name, s.education_type_id, e.name AS education_type_name 
       FROM ref_series s
       LEFT JOIN ref_education_types e ON s.education_type_id = e.id
       ORDER BY s.code ASC
@@ -129,15 +133,94 @@ class SchoolService {
     return rows;
   }
 
+  async createSeries(data) {
+    const { code, name, education_type_id } = data;
+    const [result] = await db.query(
+      'INSERT INTO ref_series (code, name, education_type_id) VALUES (?, ?, ?)',
+      [code, name, education_type_id]
+    );
+    return { id: result.insertId, ...data };
+  }
+
+  async updateSeries(id, data) {
+    const { code, name, education_type_id } = data;
+    const [result] = await db.query(
+      'UPDATE ref_series SET code = ?, name = ?, education_type_id = ? WHERE id = ?',
+      [code, name, education_type_id, id]
+    );
+    return result.affectedRows > 0;
+  }
+
+  async deleteSeries(id) {
+    const [result] = await db.query('DELETE FROM ref_series WHERE id = ?', [id]);
+    return result.affectedRows > 0;
+  }
+
+  // --- 3. SUBJECTS (ref_subjects) ---
   async getAllSubjects() {
     const query = 'SELECT id, code, name, domain_id FROM ref_subjects ORDER BY name ASC';
     const [rows] = await db.query(query);
     return rows;
   }
 
+  async createSubject(data) {
+    const { code, name, domain_id } = data;
+    const [result] = await db.query(
+      'INSERT INTO ref_subjects (code, name, domain_id) VALUES (?, ?, ?)',
+      [code, name, domain_id]
+    );
+    return { id: result.insertId, ...data };
+  }
+
+  async updateSubject(id, data) {
+    const { code, name, domain_id } = data;
+    const [result] = await db.query(
+      'UPDATE ref_subjects SET code = ?, name = ?, domain_id = ? WHERE id = ?',
+      [code, name, domain_id, id]
+    );
+    return result.affectedRows > 0;
+  }
+
+  async deleteSubject(id) {
+    const [result] = await db.query('DELETE FROM ref_subjects WHERE id = ?', [id]);
+    return result.affectedRows > 0;
+  }
+
+  // --- 4. SUBJECT GROUPS (ref_subject_groups) ---
+  async getAllSubjectGroups() {
+    const query = 'SELECT * FROM ref_subject_groups ORDER BY name ASC';
+    const [rows] = await db.query(query);
+    return rows;
+  }
+
+  async createSubjectGroup(data) {
+    // Assuming columns: name
+    const { name, code } = data; // Assuming code might exist based on other tables
+    const [result] = await db.query(
+      'INSERT INTO ref_subject_groups (name, code) VALUES (?, ?)',
+      [name, code]
+    );
+    return { id: result.insertId, ...data };
+  }
+
+  async updateSubjectGroup(id, data) {
+    const { name, code } = data;
+    const [result] = await db.query(
+      'UPDATE ref_subject_groups SET name = ?, code = ? WHERE id = ?',
+      [name, code, id]
+    );
+    return result.affectedRows > 0;
+  }
+
+  async deleteSubjectGroup(id) {
+    const [result] = await db.query('DELETE FROM ref_subject_groups WHERE id = ?', [id]);
+    return result.affectedRows > 0;
+  }
+
+  // --- 5. TEACHING DOMAINS (ref_teaching_domains) ---
   async getAllDomains() {
     const query = `
-      SELECT d.id, d.name, d.subsystem_id, s.name AS subsystem_name
+      SELECT d.id, d.name, d.subsystem_id, d.groupe_id, s.name AS subsystem_name
       FROM ref_teaching_domains d
       LEFT JOIN ref_subsystems s ON d.subsystem_id = s.id
       ORDER BY d.name ASC
@@ -146,13 +229,63 @@ class SchoolService {
     return rows;
   }
 
-  // --- NEW METHODS FOR PERSONNEL DROP-DOWNS ---
+  async createTeachingDomain(data) {
+    const { name, subsystem_id, groupe_id } = data;
+    const [result] = await db.query(
+      'INSERT INTO ref_teaching_domains (name, subsystem_id, groupe_id) VALUES (?, ?, ?)',
+      [name, subsystem_id, groupe_id]
+    );
+    return { id: result.insertId, ...data };
+  }
+
+  async updateTeachingDomain(id, data) {
+    const { name, subsystem_id, groupe_id } = data;
+    const [result] = await db.query(
+      'UPDATE ref_teaching_domains SET name = ?, subsystem_id = ?, groupe_id = ? WHERE id = ?',
+      [name, subsystem_id, groupe_id, id]
+    );
+    return result.affectedRows > 0;
+  }
+
+  async deleteTeachingDomain(id) {
+    const [result] = await db.query('DELETE FROM ref_teaching_domains WHERE id = ?', [id]);
+    return result.affectedRows > 0;
+  }
+
+  // --- 6. GRADES (ref_grades) ---
+  // Note: Primary Key is 'grade_code' (String)
   async getAllGrades() {
     const query = 'SELECT * FROM ref_grades ORDER BY grade_code ASC';
     const [rows] = await db.query(query);
     return rows;
   }
 
+  async createGrade(data) {
+    const { grade_code, name, base_weekly_hours } = data;
+    await db.query(
+      'INSERT INTO ref_grades (grade_code, name, base_weekly_hours) VALUES (?, ?, ?)',
+      [grade_code, name, base_weekly_hours]
+    );
+    return data;
+  }
+
+  async updateGrade(id, data) {
+    // id here is the OLD grade_code
+    const { grade_code, name, base_weekly_hours } = data;
+    const [result] = await db.query(
+      'UPDATE ref_grades SET grade_code = ?, name = ?, base_weekly_hours = ? WHERE grade_code = ?',
+      [grade_code, name, base_weekly_hours, id]
+    );
+    return result.affectedRows > 0;
+  }
+
+  async deleteGrade(id) {
+    // id here is grade_code
+    const [result] = await db.query('DELETE FROM ref_grades WHERE grade_code = ?', [id]);
+    return result.affectedRows > 0;
+  }
+
+  // --- 7. ADMIN POSITIONS ---
   async getAllAdminPositions() {
     const query = 'SELECT * FROM ref_admin_positions ORDER BY name ASC';
     const [rows] = await db.query(query);

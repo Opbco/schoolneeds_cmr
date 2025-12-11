@@ -72,6 +72,17 @@ class SchoolController {
 
   // --- REFERENCE DATA METHODS ---
 
+  async getAdminPositions(req, res, next) {
+    try {
+      const positions = await schoolService.getAllAdminPositions();
+      res.json(positions);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // --- REFERENCE DATA METHODS (CRUD) ---
+
   async getClasses(req, res, next) {
     try {
       const classes = await schoolService.getAllClasses();
@@ -81,6 +92,7 @@ class SchoolController {
     }
   }
 
+  // SERIES
   async getSeries(req, res, next) {
     try {
       const series = await schoolService.getAllSeries();
@@ -89,7 +101,32 @@ class SchoolController {
       next(error);
     }
   }
+  async createSeries(req, res, next) {
+    try {
+      const result = await schoolService.createSeries(req.body);
+      res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async updateSeries(req, res, next) {
+    try {
+      const success = await schoolService.updateSeries(req.params.id, req.body);
+      success ? res.json({ message: 'Series updated' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async deleteSeries(req, res, next) {
+    try {
+      const success = await schoolService.deleteSeries(req.params.id);
+      success ? res.json({ message: 'Series deleted' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
 
+  // SUBJECTS
   async getSubjects(req, res, next) {
     try {
       const subjects = await schoolService.getAllSubjects();
@@ -98,7 +135,32 @@ class SchoolController {
       next(error);
     }
   }
+  async createSubject(req, res, next) {
+    try {
+      const result = await schoolService.createSubject(req.body);
+      res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async updateSubject(req, res, next) {
+    try {
+      const success = await schoolService.updateSubject(req.params.id, req.body);
+      success ? res.json({ message: 'Subject updated' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async deleteSubject(req, res, next) {
+    try {
+      const success = await schoolService.deleteSubject(req.params.id);
+      success ? res.json({ message: 'Subject deleted' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
 
+  // DOMAINS (Teaching Domains)
   async getDomains(req, res, next) {
     try {
       const domains = await schoolService.getAllDomains();
@@ -107,8 +169,66 @@ class SchoolController {
       next(error);
     }
   }
+  async createDomain(req, res, next) {
+    try {
+      const result = await schoolService.createTeachingDomain(req.body);
+      res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async updateDomain(req, res, next) {
+    try {
+      const success = await schoolService.updateTeachingDomain(req.params.id, req.body);
+      success ? res.json({ message: 'Domain updated' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async deleteDomain(req, res, next) {
+    try {
+      const success = await schoolService.deleteTeachingDomain(req.params.id);
+      success ? res.json({ message: 'Domain deleted' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
 
-  // --- NEW CONTROLLER METHODS FOR PERSONNEL ---
+  // SUBJECT GROUPS
+  async getSubjectGroups(req, res, next) {
+    try {
+      const groups = await schoolService.getAllSubjectGroups();
+      res.json(groups);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async createSubjectGroup(req, res, next) {
+    try {
+      const result = await schoolService.createSubjectGroup(req.body);
+      res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async updateSubjectGroup(req, res, next) {
+    try {
+      const success = await schoolService.updateSubjectGroup(req.params.id, req.body);
+      success ? res.json({ message: 'Group updated' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async deleteSubjectGroup(req, res, next) {
+    try {
+      const success = await schoolService.deleteSubjectGroup(req.params.id);
+      success ? res.json({ message: 'Group deleted' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  // GRADES
   async getGrades(req, res, next) {
     try {
       const grades = await schoolService.getAllGrades();
@@ -117,11 +237,26 @@ class SchoolController {
       next(error);
     }
   }
-
-  async getAdminPositions(req, res, next) {
+  async createGrade(req, res, next) {
     try {
-      const positions = await schoolService.getAllAdminPositions();
-      res.json(positions);
+      const result = await schoolService.createGrade(req.body);
+      res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async updateGrade(req, res, next) {
+    try {
+      const success = await schoolService.updateGrade(req.params.id, req.body);
+      success ? res.json({ message: 'Grade updated' }) : res.status(404).json({ message: 'Not found' });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async deleteGrade(req, res, next) {
+    try {
+      const success = await schoolService.deleteGrade(req.params.id);
+      success ? res.json({ message: 'Grade deleted' }) : res.status(404).json({ message: 'Not found' });
     } catch (error) {
       next(error);
     }

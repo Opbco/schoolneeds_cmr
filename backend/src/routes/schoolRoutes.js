@@ -8,13 +8,37 @@ router.post('/', validate(schemas.createSchool), schoolController.createSchool);
 
 // --- REFERENCE ROUTES ---
 router.get('/classes', schoolController.getClasses);
-router.get('/series', schoolController.getSeries);
-router.get('/subjects', schoolController.getSubjects);
-router.get('/domaines', schoolController.getDomains);
-
-// --- NEW ROUTES FOR PERSONNEL ---
-router.get('/grades', schoolController.getGrades);
 router.get('/admin-positions', schoolController.getAdminPositions);
+
+// Series
+router.get('/series', schoolController.getSeries);
+router.post('/series', schoolController.createSeries);
+router.put('/series/:id', schoolController.updateSeries);
+router.delete('/series/:id', schoolController.deleteSeries);
+
+// Subjects
+router.get('/subjects', schoolController.getSubjects);
+router.post('/subjects', schoolController.createSubject);
+router.put('/subjects/:id', schoolController.updateSubject);
+router.delete('/subjects/:id', schoolController.deleteSubject);
+
+// Subject Groups
+router.get('/subject-groups', schoolController.getSubjectGroups);
+router.post('/subject-groups', schoolController.createSubjectGroup);
+router.put('/subject-groups/:id', schoolController.updateSubjectGroup);
+router.delete('/subject-groups/:id', schoolController.deleteSubjectGroup);
+
+// Teaching Domains
+router.get('/domaines', schoolController.getDomains); // Keeping original getter
+router.post('/domaines', schoolController.createDomain);
+router.put('/domaines/:id', schoolController.updateDomain);
+router.delete('/domaines/:id', schoolController.deleteDomain);
+
+// Grades
+router.get('/grades', schoolController.getGrades);
+router.post('/grades', schoolController.createGrade);
+router.put('/grades/:id', schoolController.updateGrade); // :id here is the grade_code
+router.delete('/grades/:id', schoolController.deleteGrade);
 
 // --- CURRICULUM ROUTES (Must be before /:id) ---
 router.get('/curriculum', schoolController.getCurriculum);
