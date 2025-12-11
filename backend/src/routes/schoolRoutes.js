@@ -46,9 +46,8 @@ router.post('/curriculum', schoolController.createCurriculum);
 router.put('/curriculum/:id', schoolController.updateCurriculum);
 router.delete('/curriculum/:id', schoolController.deleteCurriculum);
 
-// --- NETWORK & SCHEDULING ROUTES (NEW) ---
+// --- NETWORK ROUTES (Refactored) ---
 router.post('/networks/generate', schoolController.generateNetworks);
-router.post('/networks/timetable', schoolController.generateTimetables);
 router.get('/networks', schoolController.getNetworks);
 router.get('/networks/:id', schoolController.getNetworkById);
 

@@ -313,23 +313,12 @@ class SchoolController {
     }
   }
 
-  // --- NETWORK & SCHEDULING METHODS (NEW) ---
+  // --- NETWORKS---
 
   async generateNetworks(req, res, next) {
     try {
-      // Default to 5km radius if not provided
-      const radius = req.body.radius || 5.0; 
-      const networks = await schoolService.generateNetworks(radius);
+      const networks = await schoolService.generateNetworks();
       res.json(networks);
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async generateTimetables(req, res, next) {
-    try {
-      const result = await schoolService.generateTimetables();
-      res.json(result);
     } catch (error) {
       next(error);
     }
@@ -337,7 +326,12 @@ class SchoolController {
 
   async getNetworks(req, res, next) {
     try {
-      const networks = await schoolService.getAllNetworks();
+      const filters = {
+        teaching_domain_id: req.query.teaching_domain_id,
+        school_name: req.query.school_name,
+        search: req.query.search
+      };
+      const networks = await schoolService.getAllNetworks(filters);
       res.json(networks);
     } catch (error) {
       next(error);

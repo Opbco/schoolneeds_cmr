@@ -364,75 +364,89 @@ class SchoolService {
     return result.affectedRows > 0;
   }
 
-  // --- NETWORK & SCHEDULING LOGIC ---
 
-  async generateNetworks(radiusKm) {
-    // Calls the Stored Procedure to generate clusters based on distance
-    await db.query('CALL sp_GenerateNetworks_Greedy(?)', [radiusKm]);
+  // --- NETWORK GENERATION LOGIC ---
+
+  async generateNetworks() {
+    await db.query('CALL sp_GenerateAllNetworks()');
     return this.getAllNetworks();
   }
 
-  async generateTimetables() {
-    // Calls the Stored Procedure to schedule virtual courses in multimedia rooms
-    await db.query('CALL sp_GenerateNetworkTimetable()');
-    return { message: 'Timetables generated successfully' };
-  }
+  async getAllNetworks(filters = {}) {
+    let query = `
+      SELECT n.*, d.name as domain_name
+      FROM school_networks n
+      JOIN ref_teaching_domains d ON n.teaching_domain_id = d.id
+    `;
+    const params = [];
+    const conditions = [];
 
-  async getAllNetworks() {
-    // Fetches simple list of networks
-    const [rows] = await db.query(`
-      SELECT * FROM school_networks ORDER BY id DESC
-    `);
+    // Filter by Domain
+    if (filters.teaching_domain_id) {
+      conditions.push('n.teaching_domain_id = ?');
+      params.push(filters.teaching_domain_id);
+    }
+
+    // Search by Network Name
+    if (filters.search) {
+      conditions.push('n.name LIKE ?');
+      params.push(`%${filters.search}%`);
+    }
+
+    // Advanced: Find networks containing a specific school (by name)
+    if (filters.school_name) {
+      conditions.push(`
+        EXISTS (
+          SELECT 1 FROM school_network_members m
+          JOIN schools s ON m.school_id = s.id
+          WHERE m.network_id = n.id AND s.name LIKE ?
+        )
+      `);
+      params.push(`%${filters.school_name}%`);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    query += ' ORDER BY n.created_at DESC';
+
+    const [rows] = await db.query(query, params);
     return rows;
   }
 
   async getNetworkDetails(networkId) {
-    // 1. Get Network Info
-    const [networkRows] = await db.query('SELECT * FROM school_networks WHERE id = ?', [networkId]);
+    // 1. Get Network Header
+    const [networkRows] = await db.query(`
+      SELECT n.*, d.name as domain_name 
+      FROM school_networks n
+      JOIN ref_teaching_domains d ON n.teaching_domain_id = d.id
+      WHERE n.id = ?
+    `, [networkId]);
+    
     if (networkRows.length === 0) return null;
     const network = networkRows[0];
 
-    // 2. Get Members (Schools in the network)
+    // 2. Get Members (Schools) - Including LAT/LONG for Map Visualization
     const [members] = await db.query(`
-      SELECT snm.*, s.name as school_name, s.code, s.region, s.division 
+      SELECT 
+        snm.*, 
+        s.name as school_name, 
+        s.code, 
+        s.region, 
+        s.division,
+        s.latitude,
+        s.longitude
       FROM school_network_members snm
       JOIN schools s ON snm.school_id = s.id
       WHERE snm.network_id = ?
+      ORDER BY snm.hours_available DESC
     `, [networkId]);
 
-    // 3. Get Virtual Courses (The shared resources)
-    const [courses] = await db.query(`
-      SELECT vc.*, 
-             prov_s.name as provider_school_name,
-             subj.name as subject_name,
-             cl.name as class_level_name
-      FROM network_virtual_courses vc
-      JOIN schools prov_s ON vc.provider_school_id = prov_s.id
-      JOIN ref_subjects subj ON vc.subject_id = subj.id
-      JOIN ref_class_levels cl ON vc.class_level_id = cl.id
-      WHERE vc.network_id = ?
-    `, [networkId]);
-
-    // 4. Get Schedule (Joined with Time Slots)
-    const [schedule] = await db.query(`
-      SELECT ms.*, 
-             ts.day_of_week, ts.time_slot_number, ts.start_time, ts.end_time,
-             vc.subject_id, subj.name as subject_name,
-             vc.provider_school_id, prov.name as provider_name
-      FROM multimedia_room_schedule ms
-      JOIN ref_time_slots ts ON ms.time_slot_id = ts.id
-      JOIN network_virtual_courses vc ON ms.virtual_course_id = vc.id
-      JOIN ref_subjects subj ON vc.subject_id = subj.id
-      JOIN schools prov ON vc.provider_school_id = prov.id
-      WHERE vc.network_id = ?
-      ORDER BY FIELD(ts.day_of_week, 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'), ts.time_slot_number
-    `, [networkId]);
-
+    // Return structured object
     return {
       ...network,
-      members,
-      virtual_courses: courses,
-      schedule
+      members
     };
   }
 }
