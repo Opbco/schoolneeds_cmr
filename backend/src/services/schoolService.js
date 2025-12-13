@@ -10,11 +10,14 @@ class SchoolService {
     // If filtering by subject, we join the needs_report view
     if (filters.subject_id) {
       query = `
-        SELECT s.*, nr.balance as filtered_subject_balance, nr.domain_name as filtered_subject_name
+        SELECT s.*, et.id as education_id, et.name as education, nr.balance as filtered_subject_balance, nr.domain_name as filtered_subject_name
         FROM schools s
         LEFT JOIN needs_report nr ON s.id = nr.school_id AND nr.teaching_domain_id = ?
+        LEFT JOIN ref_school_types st ON s.school_type_id = st.id
+        JOIN ref_education_types et ON st.education_type_id = et.id AND et.id = ?
       `;
       params.push(filters.subject_id);
+      params.push(filters.education);
 
       // Handle Balance Status (Deficit vs Surplus)
       if (filters.balance_status === 'deficit') {
@@ -189,6 +192,13 @@ class SchoolService {
   // --- 4. SUBJECT GROUPS (ref_subject_groups) ---
   async getAllSubjectGroups() {
     const query = 'SELECT * FROM ref_subject_groups ORDER BY name ASC';
+    const [rows] = await db.query(query);
+    return rows;
+  }
+
+  // --- 4. SUBJECT GROUPS (ref_subject_groups) ---
+  async getAllTypesOfEducation() {
+    const query = 'SELECT * FROM ref_education_types ORDER BY name ASC';
     const [rows] = await db.query(query);
     return rows;
   }
@@ -374,9 +384,10 @@ class SchoolService {
 
   async getAllNetworks(filters = {}) {
     let query = `
-      SELECT n.*, d.name as domain_name
+      SELECT n.*, d.name as domain_name, et.name as education_type
       FROM school_networks n
       JOIN ref_teaching_domains d ON n.teaching_domain_id = d.id
+      JOIN ref_education_types et ON n.education_type_id = et.id
     `;
     const params = [];
     const conditions = [];
@@ -391,6 +402,12 @@ class SchoolService {
     if (filters.search) {
       conditions.push('n.name LIKE ?');
       params.push(`%${filters.search}%`);
+    }
+
+    // Search by type of education 
+    if (filters.education_type_id) {
+      conditions.push('n.education_type_id = ?');
+      params.push(filters.education_type_id);
     }
 
     // Advanced: Find networks containing a specific school (by name)
@@ -418,9 +435,10 @@ class SchoolService {
   async getNetworkDetails(networkId) {
     // 1. Get Network Header
     const [networkRows] = await db.query(`
-      SELECT n.*, d.name as domain_name 
+      SELECT n.*, d.name as domain_name, et.name as education_type
       FROM school_networks n
       JOIN ref_teaching_domains d ON n.teaching_domain_id = d.id
+      JOIN ref_education_types et ON n.education_type_id = et.id
       WHERE n.id = ?
     `, [networkId]);
     

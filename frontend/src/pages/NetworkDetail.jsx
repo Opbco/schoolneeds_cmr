@@ -41,6 +41,9 @@ const NetworkDetail = () => {
               </span>
             </div>
             <p className="text-gray-500 flex items-center gap-2">
+              Education: <span className="font-medium text-gray-900">{network.education_type}</span>
+            </p>
+            <p className="text-gray-500 flex items-center gap-2">
               Domain: <span className="font-medium text-gray-900">{network.domain_name}</span>
             </p>
           </div>

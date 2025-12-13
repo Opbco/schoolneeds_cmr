@@ -11,22 +11,31 @@ const Networks = () => {
   // State for Filters & UI
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDomain, setSelectedDomain] = useState('');
+  const [selectedEducation, setSelectedEducation] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
 
   // 1. Fetch Domains for Filter
   const { data: domains = [] } = useQuery({
     queryKey: ['domains'],
-    queryFn: async () => (await api.get('/domaines')).data,
+    queryFn: async () => (await api.get('/schools/domaines')).data,
     staleTime: 1000 * 60 * 60
   });
 
-  // 2. Fetch Networks (Filtered)
+  // 2. Fetch Types of education for Filter
+  const { data: educations = [] } = useQuery({
+    queryKey: ['educations'],
+    queryFn: async () => (await api.get('/schools/educations')).data,
+    staleTime: 1000 * 60 * 60
+  });
+
+  // 3. Fetch Networks (Filtered)
   const { data: networks = [], isLoading } = useQuery({
-    queryKey: ['networks', selectedDomain, searchTerm],
+    queryKey: ['networks', selectedDomain, selectedEducation, searchTerm],
     queryFn: async () => {
       const params = new URLSearchParams();
       if (selectedDomain) params.append('teaching_domain_id', selectedDomain);
+      if (selectedEducation) params.append('education_type_id', selectedEducation);
       if (searchTerm) params.append('search', searchTerm);
       
       const res = await api.get(`/schools/networks?${params.toString()}`);
@@ -109,6 +118,20 @@ const Networks = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
           />
+        </div>
+
+        <div className="md:w-1/4 relative">
+          <Filter className="absolute left-3 top-2.5 text-gray-400" size={18} />
+          <select
+            value={selectedEducation}
+            onChange={(e) => setSelectedEducation(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none appearance-none bg-white"
+          >
+            <option value="">All Types of Education</option>
+            {educations.map(ed => (
+              <option key={ed.id} value={ed.id}>{ed.name}</option>
+            ))}
+          </select>
         </div>
         
         <div className="md:w-1/3 relative">

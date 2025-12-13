@@ -7,6 +7,7 @@ class SchoolController {
       const filters = {
         region: req.query.region,
         division: req.query.division,
+        education: req.query.education_type_id,
         subject_id: req.query.subject_id,
         balance_status: req.query.balance_status
       };
@@ -194,6 +195,16 @@ class SchoolController {
     }
   }
 
+  // TYPES OD EDUCATION
+  async getTypeOfEducations(req, res, next) {
+    try {
+      const educations = await schoolService.getAllTypesOfEducation();
+      res.json(educations);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   // SUBJECT GROUPS
   async getSubjectGroups(req, res, next) {
     try {
@@ -328,6 +339,7 @@ class SchoolController {
     try {
       const filters = {
         teaching_domain_id: req.query.teaching_domain_id,
+        education_type_id: req.query.education_type_id,
         school_name: req.query.school_name,
         search: req.query.search
       };

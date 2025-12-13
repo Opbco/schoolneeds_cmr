@@ -7,6 +7,7 @@ router.get('/', schoolController.getSchools);
 router.post('/', validate(schemas.createSchool), schoolController.createSchool);
 
 // --- REFERENCE ROUTES ---
+router.get('/educations', schoolController.getTypeOfEducations);
 router.get('/classes', schoolController.getClasses);
 router.get('/admin-positions', schoolController.getAdminPositions);
 

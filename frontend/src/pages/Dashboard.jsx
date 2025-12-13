@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [filters, setFilters] = useState({
     region: '',
     division: '',
+    education: '',
     search: '',
     subject_id: '',
     balance_status: '' // 'deficit' | 'surplus'
@@ -39,13 +40,21 @@ const Dashboard = () => {
     staleTime: 1000 * 60 * 60 // 1 hour
   });
 
-  // 2. Fetch Schools (Now passing ALL filters to backend)
+  // 2. Fetch Types of education for Filter
+  const { data: educations = [] } = useQuery({
+    queryKey: ['educations'],
+    queryFn: async () => (await api.get('/schools/educations')).data,
+    staleTime: 1000 * 60 * 60
+  });
+
+  // 3. Fetch Schools (Now passing ALL filters to backend)
   const { data: schools = [], isLoading, error } = useQuery({
-    queryKey: ['schools', filters.region, filters.division, filters.subject_id, filters.balance_status],
+    queryKey: ['schools', filters.education, filters.region, filters.division, filters.subject_id, filters.balance_status],
     queryFn: async () => {
       const params = new URLSearchParams();
       if (filters.region) params.append('region', filters.region);
       if (filters.division) params.append('division', filters.division);
+      if (filters.education) params.append('education_type_id', filters.education);
       if (filters.subject_id) params.append('subject_id', filters.subject_id);
       if (filters.balance_status) params.append('balance_status', filters.balance_status);
       
@@ -123,7 +132,7 @@ const Dashboard = () => {
   };
 
   const handleResetFilters = () => {
-    setFilters({ region: '', division: '', search: '', subject_id: '', balance_status: '' });
+    setFilters({ region: '', division: '', education: '', search: '', subject_id: '', balance_status: '' });
     setSortConfig({ key: 'name', direction: 'asc' });
   };
 
@@ -309,6 +318,19 @@ const Dashboard = () => {
                   <option value="surplus">Excess Only (Surplus)</option>
                 </select>
              </div>
+          </div>
+
+          <div className="w-full md:w-1/5">
+            <label className="block text-xs font-semibold text-gray-500 mb-1 uppercase">Education</label>
+            <select
+              name="education"
+              value={filters.education}
+              onChange={handleFilterChange}
+              className="w-full p-2 border rounded-md bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm"
+            >
+              <option value="">All Education</option>
+              {educations.map(ed => <option key={ed.name} value={ed.id}>{ed.name}</option>)}
+            </select>
           </div>
 
           <div className="w-full md:w-1/5">
